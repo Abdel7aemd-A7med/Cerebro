@@ -1,0 +1,16 @@
+# --- الواجهة والعرض (The UI) ---
+streamlit
+pandas
+
+# --- عقل النظام والوكيل (AI & Agents) ---
+langchain
+langchain-ollama
+langgraph
+pydantic
+
+# --- الداتا بيز والأمان (DB & Security) ---
+sqlalchemy
+sqlparse
+
+# --- أدوات مساعدة (Utils) ---
+python-dotenv
