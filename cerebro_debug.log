@@ -1,0 +1,7 @@
+KoboldCPP initialized with multi-format support
+Successfully parsed response: confidence=0.45, needs_clarification=True, has_sql=False
+Processing complete: confidence=0.00, needs_clarification=True, has_sql=False
+Successfully parsed response: confidence=0.95, needs_clarification=False, has_sql=True
+Detected write operation, confidence 0.85
+Processing complete: confidence=0.81, needs_clarification=False, has_sql=True
+SQL ready for execution

@@ -1,38 +1,49 @@
-# core/state.py
-from typing import TypedDict, List, Union, Optional, Any
-import pandas as pd
+from typing import TypedDict, Annotated, List, Optional, Any, Dict
+from langchain_core.messages import AnyMessage
+import operator
 
-class AgentState(TypedDict):
-    # --- مدخلات المستخدم الأساسية ---
-    user_input: str
-    
-    # تاريخ المحادثة (لتخزين السياق)
-    history: List[dict]
-    
-    # --- المسار التقني للبيانات (SQL Path) ---
-    current_schema: str
-    generated_sql: str
-    
-    # النتائج: يمكن أن تكون DataFrame (عند الاستعلام) أو String (رسائل تأكيد)
-    db_results: Any 
-    
-    # سجل الأخطاء: يستخدم للتوجيه الشرطي وللتصحيح الذاتي
-    error_log: str
-    
-    # --- نظام التفكير واللوجز ---
-    thinking_logs: List[str]
-    final_report: str
 
-    # --- 🆕 حقول إدارة المشروع (The Planner Logic) ---
+class AgentState(TypedDict, total=False):
+    # =============================
+    # 🧠 Conversation Memory
+    # =============================
+    messages: Annotated[List[AnyMessage], operator.add]
+
+    # =============================
+    # ⚙️ Context
+    # =============================
+    selected_db: str
+
+    # =============================
+    # 🤖 Agent Outputs
+    # =============================
+    agent_message: str
+    pending_sql: Optional[str]
+    error_log: Optional[str]
+    db_results: Any
+
+    # =============================
+    # 🛑 CONTROL FLOW
+    # =============================
+    stop_signal: bool
+
+    # =============================
+    # 🔥 DEBUG / STABILITY
+    # =============================
+    step: Optional[str]
+    error: Optional[str]
+    retry_count: Optional[int]
+
+    # =============================
+    #  STREAM CONTROL
+    # =============================
+    is_streaming: Optional[bool]
+    stream_buffer: Optional[str]
     
-    # هل المهمة تتطلب تقسيم لمراحل؟ (True/False)
-    is_complex: bool
-    
-    # قائمة بأسماء المراحل (مثال: ["بناء الجداول", "إدخال بيانات"])
-    plan_steps: List[str]
-    
-    # مؤشر للمرحلة الحالية التي يعمل عليها العميل
-    current_step: int
-    
-    # عداد لمحاولات التصحيح (لمنع الـ Infinite Loop في الـ SQL)
-    retry_count: int
+    # =============================
+    # MEMORY 
+    # =============================
+    conversation_history: Optional[List[Dict[str, str]]]  
+    last_sql: Optional[str]  
+    last_response: Optional[str]  
+    waiting_for_confirmation: Optional[bool]  
