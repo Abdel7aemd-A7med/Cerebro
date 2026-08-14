@@ -82,19 +82,16 @@ The agent handles **SQL generation** → **execution** → **result presentation
 
 ```
 turinoo/
-├── app.py                          # 🖥️ Streamlit frontend interface
-├── core/                           # 🧠 Agent core logic
-│   ├── state.py                    # 📋 LangGraph state schema
-│   ├── nodes.py                    # 🤖 Agent intelligence & execution
-│   └── graph.py                    # 🔄 Workflow orchestration & routing
-├── database/                       # 🗄️ Database operations
-│   └── db_manager.py               # 📊 SQLite & file ingestion manager
-├── databases/                      # 💾 Local SQLite databases & memory
-├── models/                         # 🤗 LLM models (download separately)
-├── scripts/                        # 🔧 Utility scripts
-├── requirements.txt                # 📦 Python dependencies
-├── LICENSE                         # 📜 MIT License
-└── README.md                       # 📖 Project documentation
+├── app.py                          #  Streamlit frontend interface
+├── core/                           #  Agent core logic
+│   ├── state.py                    #  LangGraph state schema
+│   ├── nodes.py                    #  Agent intelligence & execution
+│   └── graph.py                    #  Workflow orchestration & routing
+├── database/                       
+│   └── db_manager.py              
+├── databases/                      #  Local SQLite databases & memory
+├── requirements.txt                #  dependencies
+└── README.md                       
 ```
 
 ## 📋 Prerequisites
